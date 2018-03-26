@@ -1,29 +1,47 @@
 import axios from 'axios';
 
-// const vehicles = [
-//   {
-//     _id: 1,
-//     model: { name: 'Fiat Punto from Action' }
-//   },
-//   {
-//     _id: 2,
-//     model: { name: 'Honda HR-V' }
-//   },
-//   {
-//     _id: 3,
-//     model: { name: 'Hyundai HB20' }
-//   },
-// ];
+const API = 'https://localhost:8080/';
 
-export const getAllVehicles = () => {
+export const getAllVehicles = (params = {}) => {
   return (dispatch) => {
-    axios.get('https://api-cdn.gruposinal.com.br/public/cars/search?brand=grupo-sinal&paginate=eyJvZmZzZXQiOjB9')
+    axios.get(`${API}public/cars/search`, {
+      params: {
+        ...params,
+        brand: 'grupo-sinal'
+      }
+    })
       .then((response) => {
-        console.log(response)
         dispatch({
           type: 'GET_ALL_VEHICLES',
           payload: response.data.cars
         });
       });
+  }
+}
+
+export const getFilters = (params = {}) => {
+  return (dispatch) => {
+    axios.get(`${API}public/cars/filters?`, {
+        params: {
+          ...params,
+          brand: 'grupo-sinal'
+        }
+      })
+      .then((response) => {
+        dispatch({
+          type: 'GET_FILTERS',
+          payload: response.data
+        });
+      });
+  }
+}
+
+export const setFilterValue = (name, value) => {
+  return {
+    type: 'SET_FILTER_VALUE',
+    payload: {
+      name,
+      value
+    }
   }
 }

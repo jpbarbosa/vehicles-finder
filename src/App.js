@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllVehicles } from './actions';
+import Filters from './Filters';
+import _ from 'lodash';
 
 class App extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getAllVehicles();
+  }
+
+  componentDidUpdate(prevProps) {
+    //console.log(this.props.filtersValues)
+    if (prevProps.filtersValues !== this.props.filtersValues) {
+      this.props.getAllVehicles(_.pickBy(this.props.filtersValues));
+    }
   }
 
   render() {
@@ -15,9 +24,14 @@ class App extends Component {
     return (
       <div>
         <h1>Vehicles Finder</h1>
+        <Filters />
         <ul>
           {this.props.vehicles.map((vehicle) => (
-            <li key={vehicle._id}>{vehicle.model.name}</li>)
+            <li key={vehicle._id}>
+              <span>{vehicle.make.name} - </span>
+              <span>{vehicle.model.name} - </span>
+              <span>{vehicle.version.name}</span>
+            </li>)
           )}
         </ul>
       </div>
@@ -27,7 +41,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    vehicles: state.vehicles.all
+    vehicles: state.vehicles.all,
+    filtersValues: state.filtersValues
   }
 }
 
