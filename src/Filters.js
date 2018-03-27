@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getFilters, setFilterValue } from './actions';
+import { fetchFilters, setFilterValue } from './actions';
 import _ from 'lodash';
 
 class Filters extends Component {
 
   componentWillMount() {
-    this.props.getFilters();
+    this.props.fetchFilters();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.values !== this.props.values ) {
-      this.props.getFilters(_.pickBy(this.props.values));
+      this.props.fetchFilters(_.pickBy(this.props.values));
     }
   }
 
@@ -67,6 +67,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  getFilters,
+  fetchFilters,
   setFilterValue
 })(Filters);
