@@ -25,7 +25,7 @@ class Filters extends Component {
       return <div>Loading...</div>
     }
     return (
-      <div>
+      <div className="Filters">
         <h2>Filters</h2>
         <select name="make"
           onChange={this.handleChange}

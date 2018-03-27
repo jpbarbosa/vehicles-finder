@@ -1,5 +1,37 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 15px;
   font-family: sans-serif;
+}
+
+div {
+  border-radius: 5px;
+}
+
+.Filters {
+  background: #eee;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.Filters select {
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+.VehiclesList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Vehicle {
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.Vehicle img {
+  width: 250px;
 }

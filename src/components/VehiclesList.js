@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Vehicle from './Vehicle';
 import { fetchVehicles } from '../actions';
 
 class App extends Component {
@@ -20,16 +21,10 @@ class App extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div>
-        <ul>
-          {this.props.vehicles.map(vehicle => (
-            <li key={vehicle._id}>
-              <span>{vehicle.make.name} - </span>
-              <span>{vehicle.model.name} - </span>
-              <span>{vehicle.version.name}</span>
-            </li>
-          ))}
-        </ul>
+      <div className="VehiclesList">
+        {this.props.vehicles.map(vehicle => (
+          <Vehicle vehicle={vehicle} key={vehicle._id} />
+        ))}
       </div>
     );
   }
