@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFilters, setFilterValue } from './actions';
+import { fetchFilters, setFilterValue } from '../actions';
 import _ from 'lodash';
 
 class Filters extends Component {

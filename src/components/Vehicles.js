@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { fetchVehicles } from './actions';
-import Filters from './Filters';
+import { fetchVehicles } from '../actions';
 
 class App extends Component {
+
   componentDidMount() {
     this.props.fetchVehicles();
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(this.props.filtersValues)
     if (prevProps.filtersValues !== this.props.filtersValues) {
       this.props.fetchVehicles(_.pickBy(this.props.filtersValues));
     }
@@ -22,8 +21,6 @@ class App extends Component {
     }
     return (
       <div>
-        <h1>Vehicles Finder</h1>
-        <Filters />
         <ul>
           {this.props.vehicles.map(vehicle => (
             <li key={vehicle._id}>
