@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import filtersReducer from './filters-reducer';
-import filtersValuesReducer from './filtersValues-reducer';
-import vehiclesReducer from './vehicles-reducer';
+import filters from './filters';
+import filtersValues from './filtersValues';
+import vehicles from './vehicles';
 
 export default combineReducers({
-  vehicles: vehiclesReducer,
-  filters: filtersReducer,
-  filtersValues: filtersValuesReducer,
+  vehicles,
+  filters,
+  filtersValues,
 });

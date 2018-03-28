@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Vehicle from './Vehicle';
-import { fetchVehicles } from '../actions';
+import { fetchVehicles } from '../actions/vehicles';
 
 class App extends Component {
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchFilters, setFilterValue } from '../actions';
+import FilterSelect from './FilterSelect';
+import { fetchFilters, setFilterValue } from '../actions/filters';
 import _ from 'lodash';
 
 class Filters extends Component {
@@ -27,33 +28,27 @@ class Filters extends Component {
     return (
       <div className="Filters">
         <h2>Filters</h2>
-        <select name="make"
+        <FilterSelect
+          name="make"
+          label="Make"
           onChange={this.handleChange}
           value={values.make}
-        >
-          <option>Select Make</option>
-          {filters.makes.map((make) => (
-            <option key={make._id} value={make.slug}>{make.name}</option>
-          ))}
-        </select>
-        <select name="model"
+          options={filters.makes}
+        />
+        <FilterSelect
+          name="model"
+          label="Model"
           onChange={this.handleChange}
           value={values.model}
-        >
-          <option>Select Model</option>
-          {filters.models.map((model) => (
-            <option key={model._id} value={model.slug}>{model.name}</option>
-          ))}
-        </select>
-        <select name="color"
+          options={filters.models}
+        />
+        <FilterSelect
+          name="color"
+          label="Color"
           onChange={this.handleChange}
           value={values.color}
-        >
-          <option>Select Color</option>
-          {filters.colors.map((color) => (
-            <option key={color._id} value={color.slug}>{color.name}</option>
-          ))}
-        </select>
+          options={filters.colors}
+        />
       </div>
     )
   }
