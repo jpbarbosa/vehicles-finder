@@ -4,7 +4,7 @@ import _ from 'lodash';
 import Vehicle from './Vehicle';
 import { fetchVehicles } from '../actions/vehicles';
 
-class App extends Component {
+class VehicleList extends Component {
 
   componentDidMount() {
     this.props.fetchVehicles();
@@ -38,4 +38,4 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, { fetchVehicles })(App);
+export default connect(mapStateToProps, { fetchVehicles })(VehicleList);
