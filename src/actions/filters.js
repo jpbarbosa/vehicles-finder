@@ -4,11 +4,9 @@ import {
   SET_FILTER_VALUE,
 } from './types';
 
-const API = 'https://localhost:8080/';
-
 export const fetchFilters = (params = {}) => (
   (dispatch) => {
-    axios.get(`${API}public/cars/filters`, {
+    axios.get(`${process.env.REACT_APP_API}public/cars/filters`, {
       params: {
         ...params,
         brand: 'grupo-sinal',

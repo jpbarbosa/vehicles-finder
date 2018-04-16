@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import FilterSelect from './FilterSelect';
 import { fetchFilters, setFilterValue } from '../actions/filters';
 import _ from 'lodash';
 
 class Filters extends Component {
+
+  state = {
+    redirect: false,
+  }
 
   componentWillMount() {
     this.props.fetchFilters();
@@ -12,16 +17,33 @@ class Filters extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.values !== this.props.values ) {
+      this.setState({
+        redirect: false,
+      });
       this.props.fetchFilters(_.pickBy(this.props.values));
     }
   }
 
   handleChange = (e) => {
     this.props.setFilterValue(e.target.name, e.target.value);
+    this.setState({
+      redirect: true,
+    });
   }
 
   render() {
     const { filters, values } = this.props;
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/',
+            search: `?${Object.entries(_.pickBy(this.props.values)).map(([key, val]) => `${key}=${val}`).join('&')}`,
+          }}
+        />
+      );
+    }
+
     if (!filters) {
       return <div>Loading...</div>
     }

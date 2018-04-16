@@ -4,8 +4,6 @@ import {
   LOADING_VEHICLES,
 } from './types';
 
-const API = 'https://localhost:8080/';
-
 export const loadingVehicles = loading => (
   {
     type: LOADING_VEHICLES,
@@ -16,7 +14,7 @@ export const loadingVehicles = loading => (
 export const fetchVehicles = (params = {}) => (
   (dispatch) => {
     dispatch(loadingVehicles(true));
-    axios.get(`${API}public/cars/search`, {
+    axios.get(`${process.env.REACT_APP_API}public/cars/search`, {
       params: {
         ...params,
         brand: 'grupo-sinal',
